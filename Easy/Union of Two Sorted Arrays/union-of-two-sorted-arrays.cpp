@@ -11,18 +11,52 @@ class Solution{
     //Function to return a list containing the union of the two arrays. 
     vector<int> findUnion(int arr1[], int arr2[], int n, int m)
     {
-        set<int>temp;
-        for(int i=0;i<n;i++){
-            temp.insert(arr1[i]);
-        }
+        // set<int>temp;
+        // for(int i=0;i<n;i++){
+        //     temp.insert(arr1[i]);
+        // }
         
-        for(int j=0;j<m;j++){
-            temp.insert(arr2[j]);
-        }
+        // for(int j=0;j<m;j++){
+        //     temp.insert(arr2[j]);
+        // }
+        
+        // vector<int>ans;
+        // for(auto i:temp){
+        //     ans.push_back(i);
+        // }
+        // return ans;
+        
         
         vector<int>ans;
-        for(auto i:temp){
-            ans.push_back(i);
+        int i=0,j=0;
+        
+        while(i<n && j<m){
+            if(arr1[i]<=arr2[j]){
+                if(ans.size()==0 || ans.back()!=arr1[i]){
+                    ans.push_back(arr1[i]);
+                }
+                i++;
+            }
+            else{
+                if(ans.size()==0 || ans.back()!=arr2[j]){
+                    ans.push_back(arr2[j]);
+                }
+                j++;
+            }
+        }
+        
+        while(i<n){
+            if(ans.size()==0 || ans.back()!=arr1[i]){
+                ans.push_back(arr1[i]);
+            }
+            i++;
+        }
+        
+        while(j<m){
+            if(ans.size()==0 || ans.back()!=arr2[j]){
+                ans.push_back(arr2[j]);
+            }
+            j++;
         }
         return ans;
     }
